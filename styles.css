@@ -1,0 +1,35 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+#textForm {
+  margin-bottom: 20px;
+}
+
+#textInput {
+  padding: 5px;
+  width: 200px;
+}
+
+.result-area {
+  padding: 20px;
+  min-height: 100px;
+  border: 1px solid #ccc;
+}
+
+.char {
+  display: inline-block;
+  padding: 2px;
+  cursor: pointer;
+  position: relative;
+}
+
+.selected {
+  background-color: yellow;
+}
