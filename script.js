@@ -76,6 +76,7 @@ function setupCharInteractions() {
       draggedElements.forEach((el) => (el.style.visibility = "hidden"));
       const target = document.elementFromPoint(e.clientX, e.clientY);
       const targetChar = target && target.closest(".char");
+
       draggedElements.forEach((el) => (el.style.visibility = "visible"));
 
       if (targetChar && !draggedElements.includes(targetChar)) {
@@ -85,23 +86,14 @@ function setupCharInteractions() {
         const draggedIndex = Array.from(parent.children).indexOf(firstDragged);
 
         if (draggedIndex !== -1 && targetIndex !== -1) {
-          if (draggedElements.length === 1) {
-            const temp = firstDragged.cloneNode(true);
-            parent.replaceChild(temp, targetChar);
-            parent.replaceChild(firstDragged, targetChar);
-            parent.replaceChild(targetChar, temp);
+          if (draggedIndex < targetIndex) {
+            draggedElements
+              .reverse()
+              .forEach((el) => parent.insertBefore(el, targetChar.nextSibling));
           } else {
-            if (draggedIndex < targetIndex) {
-              draggedElements
-                .reverse()
-                .forEach((el) =>
-                  parent.insertBefore(el, targetChar.nextSibling)
-                );
-            } else {
-              draggedElements
-                .reverse()
-                .forEach((el) => parent.insertBefore(el, targetChar));
-            }
+            draggedElements
+              .reverse()
+              .forEach((el) => parent.insertBefore(el, targetChar));
           }
         }
       }
